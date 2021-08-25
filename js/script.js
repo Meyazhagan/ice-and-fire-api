@@ -183,13 +183,14 @@ async function fetchCharactersAll() {
     let results = await Promise.all(urls.map((url) => fetch(url)));
 
     results.forEach((result) => {
-      result.json().then((characters) => {
-        characters
-          .forEach((char) => {
+      result
+        .json()
+        .then((characters) => {
+          characters.forEach((char) => {
             charObj[char.url] = char;
-          })
-          .catch((err) => console.log(err));
-      });
+          });
+        })
+        .catch((err) => console.log(err));
     });
   } catch (err) {
     console.log(err);
