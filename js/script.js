@@ -99,23 +99,27 @@ const baseurl = "https://www.anapioficeandfire.com/api/";
 getBooks();
 
 async function getBooks() {
-  let books;
-  let local = await JSON.parse(window.localStorage.getItem("books"));
-  if (local && local.length !== 0) {
-    console.log("from local storage");
-    books = local;
-  } else {
-    console.log("fetching from server...");
-    books = await fetchBook();
-  }
-  books.forEach(async (book, index) => {
-    constructBook(book, index);
-    book.characters.forEach((char) => {
-      constructCharater(char, index);
+  try {
+    let books;
+    let local = await JSON.parse(window.localStorage.getItem("books"));
+    if (local && local.length !== 0) {
+      console.log("from local storage");
+      books = local;
+    } else {
+      console.log("fetching from server...");
+      books = await fetchBook();
+    }
+    books.forEach(async (book, index) => {
+      constructBook(book, index);
+      book.characters.forEach((char) => {
+        constructCharater(char, index);
+      });
     });
-  });
-  window.localStorage.setItem("books", JSON.stringify(books));
-  console.log(books);
+    window.localStorage.setItem("books", JSON.stringify(books));
+    console.log(books);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function getCharaters(url, charObj) {
@@ -135,13 +139,17 @@ function getCharaters(url, charObj) {
 }
 
 async function fetchBook() {
-  let charobj = await fetchCharactersAll();
-  const books = await getData(baseurl + "books?pageSize=50");
+  try {
+    let charobj = await fetchCharactersAll();
+    const books = await getData(baseurl + "books?pageSize=50");
 
-  books.forEach(async (book) => {
-    book.characters = await getCharaters(book.characters, charobj);
-  });
-  return books;
+    books.forEach(async (book) => {
+      book.characters = await getCharaters(book.characters, charobj);
+    });
+    return books;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function fetchCharacters() {
@@ -171,17 +179,21 @@ async function fetchCharactersAll() {
     urls.push(baseurl + `characters?page=${page}&pageSize=${pagesize}`);
     page++;
   }
+  try {
+    let results = await Promise.all(urls.map((url) => fetch(url)));
 
-  let results = await Promise.all(urls.map((url) => fetch(url)));
-
-  results.forEach((result) => {
-    result.json().then((characters) => {
-      characters.forEach((char) => {
-        charObj[char.url] = char;
+    results.forEach((result) => {
+      result.json().then((characters) => {
+        characters
+          .forEach((char) => {
+            charObj[char.url] = char;
+          })
+          .catch((err) => console.log(err));
       });
     });
-  });
-
+  } catch (err) {
+    console.log(err);
+  }
   console.log(charObj);
   return charObj;
 }
@@ -191,8 +203,3 @@ async function getData(URL) {
   const data = await res.json();
   return data;
 }
-
-// function more(id) {
-//   console.log(id);
-//   document.getElementById(id).nodeValue = "hello";
-// }

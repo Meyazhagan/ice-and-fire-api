@@ -134,14 +134,10 @@ h1 {
   width: fit-content;
 }
 
-.btn-inner {
-  text-align: center;
-}
-
 .overlay {
   position: absolute;
   display: none;
-  width: max-content;
+  width: 300px;
   height: max-content;
   background-color: var(--white-grey-80);
   top: 0;
@@ -155,6 +151,10 @@ h1 {
 .overlay .book-info {
   border: none;
 }
+
+.overlay .label {
+  width: fit-content;
+}
 .overlay::after {
   content: "";
   width: 10px;
@@ -167,7 +167,7 @@ h1 {
   margin: auto;
   transform: rotate(45deg);
 }
-.btn-info:hover .overlay {
+.btn-inner:hover .overlay {
   display: block;
 }
 @media (max-width: 1360px) {
