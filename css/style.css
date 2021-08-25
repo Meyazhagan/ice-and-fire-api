@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  /* background: #018dfb;
+  background: -webkit-linear-gradient(top right, #018dfb, #f89401);
+  background: -moz-linear-gradient(top right, #018dfb, #f89401);
+  background: linear-gradient(to bottom left, #018dfb, #f89401);
+  background-attachment: fixed; */
+
+  background-color: #ff9900;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23cc0000' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23aa0000' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23d6002b' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23b10022' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23d9004b' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23b2003d' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23d3006c' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23ac0057' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23c4008c' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%239e0071' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23aa00aa' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23880088' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d65307;
+  border-radius: 5px;
+}
+
+.books * {
+  padding: 0.25rem;
+}
+.label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  margin: 0.5rem auto;
+  color: rgb(24 24 24 / 72%);
+  font-weight: 700;
+}
+.detail {
+  display: inline-block;
+  color: #585858;
+}
+.book-info .info {
+  width: 90%;
+  text-align: justify;
+}
+.head {
+  text-align: center;
+  color: #393939;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.charater-container .label {
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+.book-container {
+  display: grid;
+  grid-template-areas: "bhead chead" "book character ";
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(40px);
+  margin: 2rem;
+  border-radius: 1rem;
+}
+
+.head:nth-of-type(1) {
+  grid-area: bhead;
+}
+
+.head:nth-of-type(2) {
+  grid-area: chead;
+}
+
+.book-info {
+  grid-area: book;
+}
+
+.charater-container {
+  grid-area: character;
+}
+
+.book-info {
+  display: grid;
+  border-right: 1px solid gray;
+  width: 400px;
+  margin-left: 2rem;
+}
+
+.charater-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.charater-info {
+  margin: 0.5rem;
+  border-radius: 1rem;
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.btn {
+  border: 2px solid rgb(24 24 24 / 72%);
+  color: rgb(24 24 24 / 72%);
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  background: none;
+  border-radius: 2rem;
+}
+
+.btn:hover {
+  border: 2px solid rgb(63, 63, 255);
+  color: white;
+  background: rgb(63, 63, 255);
+}
+
+.btn-info {
+  text-align: center;
+}
+@media (max-width: 1360px) {
+  .book-container {
+    grid-template-areas: "bhead" "book" "chead" "character";
+    justify-items: center;
+  }
+  .book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    border-bottom: 1px solid gray;
+    align-items: center;
+  }
+}
+
+@media (max-width: 920px) {
+  .charater-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 545px) {
+  .book-info {
+    width: 80%;
+  }
+}
