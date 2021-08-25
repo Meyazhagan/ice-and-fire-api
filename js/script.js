@@ -32,7 +32,25 @@ function constructBook(book, index) {
         >${new Date(book.released).toDateString()}</span
       >
     </div>
-    <div class="btn-info"><button class="btn" id="${index}" onclick=more('${index}', )>More info</button></div>
+    <div class="btn-info">
+    <div class="btn-inner">
+      <button class="btn" id="${index}" onclick=more('${index}', )>More info</button>
+      <div class="overlay">
+        <div class="book-info">
+          <div class="info">
+            <span class="label">Media Type </span>:<span class="detail"
+              >${book.mediaType}</span
+            >
+          </div>
+          <div class="info">
+      <span class="label">Country </span>:<span class="detail"
+        >${book.country}</span
+      >
+    </div>
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
   <div class="head">Charaters Details</div>
   <div class="charater-container" id="key${index}"></div>
@@ -58,7 +76,20 @@ function constructCharater(character, index) {
             >${character.culture}</span
           >
         </div>
-        <div class="btn-info info"><button class="btn" id="${character.url}" onclick=more('${character.url}')>More info</button></div>
+        <div class="btn-info info">
+          <div class="btn-inner">
+            <button class="btn" id="${character.url}" onclick=more('${character.url}')>More info</button>
+            <div class="overlay">
+            <div class="book-info">
+            <div class="info">
+              <span class="label">Born </span>:<span class="detail"
+                >${character.born}</span
+              >
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
 
       </div>`;
 }
@@ -161,7 +192,7 @@ async function getData(URL) {
   return data;
 }
 
-function more(id) {
-  console.log(id);
-  document.getElementById(id).nodeValue = "hello";
-}
+// function more(id) {
+//   console.log(id);
+//   document.getElementById(id).nodeValue = "hello";
+// }
